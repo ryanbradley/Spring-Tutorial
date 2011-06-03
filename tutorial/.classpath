@@ -10,11 +10,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="/home/rbradley/jboss-6.0.0.Final/common/lib/jboss-servlet-api_3.0_spec.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-pool.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-dbcp.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/standard.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jstl.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/hsqldb.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
