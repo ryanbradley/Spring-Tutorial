@@ -1,7 +1,5 @@
 package org.jboss.spring.tutorial.test;
 
-import org.springframework.web.servlet.ModelAndView;
-
 import org.jboss.spring.tutorial.mvc.InventoryController;
 import org.jboss.spring.tutorial.domain.Product;
 import org.jboss.spring.tutorial.repo.InMemoryProductDao;
@@ -19,12 +17,9 @@ public class InventoryControllerTests extends TestCase {
         spm.setProductDao(new InMemoryProductDao(new ArrayList<Product>()));
         controller.setProductManager(spm);
         //controller.setProductManager(new SimpleProductManager());
-        ModelAndView modelAndView = controller.handleRequest(null, null);
-        assertEquals("hello", modelAndView.getViewName());
-        assertNotNull(modelAndView.getModel());
-        @SuppressWarnings("rawtypes")
-		Map modelMap = (Map) modelAndView.getModelMap().get("model");
-        String nowValue = (String) modelMap.get("now");
+        Map<String,Object> model = controller.handleRequest(null, null);
+        assertNotNull(model);
+        String nowValue = (String) model.get("now");
         assertNotNull(nowValue);
     }
 }

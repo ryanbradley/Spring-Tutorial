@@ -1,9 +1,11 @@
 package org.jboss.spring.tutorial.mvc;
 
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
-import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,13 +20,22 @@ import java.util.HashMap;
 
 import org.jboss.spring.tutorial.service.ProductManager;
 
-public class InventoryController implements Controller {
+@Controller
+@RequestMapping("hello.htm")
+public class InventoryController {
 
     protected final Log logger = LogFactory.getLog(getClass());
-  
+
+    @Autowired
     private ProductManager productManager;
 
-    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping(method=RequestMethod.GET)
+/*
+ * Although I want to access the percentage member of multiple Product objects, we use @ModelAttribute to get the a map of objects and 
+ * the .jsp or .xml files can access the required members of the object.
+ */  
+    public @ModelAttribute("model")
+    Map<String,Object> handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String now = (new Date()).toString();
@@ -34,7 +45,7 @@ public class InventoryController implements Controller {
         myModel.put("now", now);
         myModel.put("products", this.productManager.getProducts());
         
-        return new ModelAndView("hello", "model", myModel);
+        return myModel;
     }
 
 	public void setProductManager(ProductManager productManager) {
