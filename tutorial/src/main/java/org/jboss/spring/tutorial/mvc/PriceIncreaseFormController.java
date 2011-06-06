@@ -26,17 +26,17 @@ public class PriceIncreaseFormController {
     private ProductManager productManager;
 
     @RequestMapping(method=RequestMethod.POST)
-    public String onSubmit(Object command)
+    public String onSubmit(PriceIncrease command)
             throws ServletException {
 
-        int increase = ((PriceIncrease) command).getPercentage();
+        int increase = command.getPercentage();
         logger.info("Increasing prices by " + increase + "%.");
 
         productManager.increasePrice(increase);
 
         logger.info("returning from PriceIncreaseForm view to hello.htm");
 
-        return "redirect: hello";
+        return "redirect:hello.htm";
     }
 
     @RequestMapping(method=RequestMethod.GET)
