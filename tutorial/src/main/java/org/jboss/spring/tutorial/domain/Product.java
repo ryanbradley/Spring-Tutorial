@@ -2,7 +2,9 @@ package org.jboss.spring.tutorial.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -10,9 +12,11 @@ import javax.persistence.Table;
 @Table(name="products")
 public class Product implements Serializable {
 
+	@Id
 	private int id;
-	private String description;
-    private Double price;
+	
+	@Column private String description;
+    @Column private Double price;
 
     public int getId() {
 		return id;

@@ -8,7 +8,6 @@ import org.jboss.spring.tutorial.repo.ProductDao;
 @SuppressWarnings("serial")
 public class SimpleProductManager implements ProductManager{
 
-	//private List<Product> products;
 	private ProductDao productDao;
 
 	public void increasePrice(int Percentage) {
@@ -24,7 +23,6 @@ public class SimpleProductManager implements ProductManager{
 	}
 
 	public List<Product> getProducts() {
-		//return products;
 		return productDao.getProductList();
 	}
 	
@@ -35,8 +33,4 @@ public class SimpleProductManager implements ProductManager{
 	public void setProductDao(ProductDao productDao) {
 		this.productDao = productDao;
 	}
-	
-    /*public void setProducts(List<Product> products) {
-		this.products = products;
-	}*/
 }
