@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
-	<persistence-unit name="tutorialPU" transaction-type="JTA">
+	<persistence-unit name="tutorialPU" transaction-type="jta">
 		<jta-data-source>java:/TutorialDS</jta-data-source>
 		<properties>
-			<property name="jboss.entity.manager.jndi.name" value="java:/tutorial/entityManager"/>
+			<property name="jboss.entity.manager.factory.jndi.name" value="java:/persistence/tutorialPU"/>
 			<property name="hibernate.show_sql" value="true"/>
 		</properties>
 	</persistence-unit>

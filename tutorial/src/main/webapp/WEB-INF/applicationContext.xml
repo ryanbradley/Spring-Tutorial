@@ -25,10 +25,30 @@
 
     <bean id="productDao" class="org.jboss.spring.tutorial.repo.JpaProductDao"/>
 
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+		</property>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="database" value="HSQL"/>
+				<property name="generateDdl" value="true"/>
+			</bean>
+		</property>
+		<property name="persistenceXmlLocation" value="classpath*:META-INF/local-persistence.xml"/>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
 	<jee:jndi-lookup id="dataSource" jndi-name="java:/TutorialDS" expected-type="javax.sql.DataSource"/>
 	
-	<jee:jndi-lookup jndi-name="java:/tutorial/entityManager" id="entityManager" expected-type="javax.persistence.EntityManager"/>
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+	</bean>
 
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+	
+	<tx:annotation-driven />
+	
     <bean id="propertyConfigurer" 
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
@@ -37,9 +57,4 @@
             </list>
         </property>
     </bean>
-    
-	<tx:jta-transaction-manager id="transactionManager"/>
-
-    <tx:annotation-driven />
-
 </beans>
