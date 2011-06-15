@@ -30,11 +30,8 @@ public class PriceIncreaseFormController {
             throws ServletException {
 
         int increase = command.getPercentage();
-        logger.info("Increasing prices by " + increase + "%.");
 
         productManager.increasePrice(increase);
-
-        logger.info("returning from PriceIncreaseForm view to hello.htm");
 
         return "redirect:hello.htm";
     }

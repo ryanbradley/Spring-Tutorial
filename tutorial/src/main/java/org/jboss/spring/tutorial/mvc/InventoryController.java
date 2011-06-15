@@ -30,16 +30,11 @@ public class InventoryController {
     private ProductManager productManager;
 
     @RequestMapping(method=RequestMethod.GET)
-/*
- * Although I want to access the percentage member of multiple Product objects, we use @ModelAttribute to get the a map of objects and 
- * the .jsp or .xml files can access the required members of the object.
- */  
     public @ModelAttribute("model")
     Map<String,Object> handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String now = (new Date()).toString();
-        logger.info("Returning hello view with " + now);
 
         Map<String, Object> myModel = new HashMap<String, Object>();
         myModel.put("now", now);
