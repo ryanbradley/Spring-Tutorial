@@ -1,16 +1,24 @@
 package org.jboss.spring.tutorial.test;
 
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.jboss.spring.tutorial.domain.Product;
 import org.jboss.spring.tutorial.repo.InMemoryProductDao;
 import org.jboss.spring.tutorial.repo.ProductDao;
 import org.jboss.spring.tutorial.service.SimpleProductManager;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import junit.framework.TestCase;
+@ContextConfiguration(locations = {"test-context.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+public class SimpleProductManagerTests {
 
-public class SimpleProductManagerTests extends TestCase {
-
+	@Autowired
 	private static List<Product> products;
 	
 	private static int PRODUCT_COUNT = 2;
@@ -23,6 +31,7 @@ public class SimpleProductManagerTests extends TestCase {
 	
 	private static int POSITIVE_PRICE_INCREASE = 10;
 	
+	@Autowired
     private SimpleProductManager productManager;
         
     protected void setUp() throws Exception {
@@ -41,34 +50,34 @@ public class SimpleProductManagerTests extends TestCase {
         
         ProductDao productDao = new InMemoryProductDao(products);
         productManager.setProductDao(productDao);
-        //productManager.setProducts(products);
     }
 
+    @Test
     public void testGetProductsWithNoProducts(){
-        //productManager = new SimpleProductManager();
         productManager.setProductDao(new InMemoryProductDao(null));
-        assertNull(productManager.getProducts());
+        assert(productManager.getProducts() == null);
     }
     
+    @Test
     public void testGetProducts() {
         List<Product> products = productManager.getProducts();
-        assertNotNull(productManager.getProducts());
-        assertEquals(PRODUCT_COUNT, productManager.getProducts().size());
+        assert(productManager.getProducts() != null);
+        assert(PRODUCT_COUNT == productManager.getProducts().size());
         
         Product product = products.get(0);
-        assertEquals(CHAIR_DESCRIPTION, product.getDescription());
-        assertEquals(CHAIR_PRICE, product.getPrice());
+        assert(CHAIR_DESCRIPTION == product.getDescription());
+        assert(CHAIR_PRICE == product.getPrice());
         
         product = products.get(1);
-        assertEquals(TABLE_DESCRIPTION, product.getDescription());
-        assertEquals(TABLE_PRICE, product.getPrice());
+        assert(TABLE_DESCRIPTION == product.getDescription());
+        assert(TABLE_PRICE == product.getPrice());
     }
     
+    @Test
     public void testPriceIncreaseWithNullListOfProducts()
     {
     	try{
     		productManager = new SimpleProductManager();
-    		//productManager.setProducts(null);
     		productManager.setProductDao(new InMemoryProductDao(null));
     		productManager.increasePrice(POSITIVE_PRICE_INCREASE);   		
     	}
@@ -77,12 +86,12 @@ public class SimpleProductManagerTests extends TestCase {
     	}
     }
     
+    @Test
     public void testPriceIncreaseWithEmptyList()
     {
     	try{
     	productManager = new SimpleProductManager();
     	productManager.setProductDao(new InMemoryProductDao(new ArrayList<Product>()));
-    	//productManager.setProducts(new ArrayList<Product>());
     	productManager.increasePrice(POSITIVE_PRICE_INCREASE);
     	}
     	catch(Exception e){
@@ -90,6 +99,7 @@ public class SimpleProductManagerTests extends TestCase {
     	}
     }
     
+    @Test
     public void testPrinceIncreaseWithPositivePercentage()
     {
     	productManager.increasePrice(POSITIVE_PRICE_INCREASE);
@@ -99,9 +109,9 @@ public class SimpleProductManagerTests extends TestCase {
     	List<Product> products = productManager.getProducts();
     	
     	Product product = products.get(0);    	
-    	assertEquals(expectedChairPriceWithIncrease, product.getPrice());
+    	assert(expectedChairPriceWithIncrease == product.getPrice());
     	
     	product = products.get(1);
-    	assertEquals(expectedTablePriceWithIncrease, product.getPrice());
+    	assert(expectedTablePriceWithIncrease == product.getPrice());
     }
 }

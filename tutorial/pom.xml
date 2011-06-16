@@ -133,6 +133,12 @@
     	<artifactId>hsqldb</artifactId>
     	<version>1.8.0.10</version>
     </dependency>
+    <dependency>
+    	<groupId>org.slf4j</groupId>
+    	<artifactId>slf4j-simple</artifactId>
+    	<version>1.4.2</version>
+    	<scope>test</scope>
+    </dependency>    
   </dependencies>
   <build>
     <finalName>tutorial</finalName>

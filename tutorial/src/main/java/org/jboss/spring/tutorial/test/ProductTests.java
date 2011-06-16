@@ -1,9 +1,15 @@
 package org.jboss.spring.tutorial.test;
 
 import org.jboss.spring.tutorial.domain.Product;
-import junit.framework.TestCase;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-public class ProductTests extends TestCase {
+@ContextConfiguration(locations = {"test-context.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+public class ProductTests {
+
 	private Product product;
 	
 	protected void setUp()
@@ -11,17 +17,18 @@ public class ProductTests extends TestCase {
 		product = new Product();
 	}
 	
+	@Test
     public void testSetAndGetDescription() {
         String testDescription = "aDescription";
-        assertNull(product.getDescription());
+        assert(product.getDescription() == null);
         product.setDescription(testDescription);
-        assertEquals(testDescription, product.getDescription());
+        assert(testDescription == product.getDescription());
     }
 
+	@Test
     public void testSetAndGetPrice() {
-        double testPrice = 100.00;
-        assertEquals(0, 0, 0);    
+        double testPrice = 100.00;   
         product.setPrice(testPrice);
-        assertEquals(testPrice, product.getPrice(), 0);
+        assert(testPrice == product.getPrice());
     }
 }
