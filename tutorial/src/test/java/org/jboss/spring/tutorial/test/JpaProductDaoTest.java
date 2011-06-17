@@ -13,9 +13,10 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:test-context.xml")
+@ContextConfiguration(locations = {"classpath:test-context.xml",
+									"classpath:META-INF/spring/applicationContext.xml"})
 @TransactionConfiguration(defaultRollback=true)
-public class JpaProductDaoTests {
+public class JpaProductDaoTest {
 	
 	@Autowired
 	private ProductDao productDao;

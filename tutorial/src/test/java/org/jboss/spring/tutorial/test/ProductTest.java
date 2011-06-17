@@ -1,18 +1,21 @@
 package org.jboss.spring.tutorial.test;
 
 import org.jboss.spring.tutorial.domain.Product;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@ContextConfiguration(locations = {"classpath:test-context.xml"})
+@ContextConfiguration(locations = {"classpath:test-context.xml",
+									"classpath:META-INF/spring/applicationContext.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class ProductTests {
+public class ProductTest {
 
 	private Product product;
 	
-	protected void setUp()
+	@Before
+	public void setUp()
 	{
 		product = new Product();
 	}

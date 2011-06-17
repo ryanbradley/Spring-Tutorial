@@ -12,9 +12,10 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 import java.util.Map;
 
-@ContextConfiguration(locations = {"classpath:test-context.xml"})
+@ContextConfiguration(locations = {"classpath:test-context.xml",
+"classpath:META-INF/spring/applicationContext.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class InventoryControllerTests {
+public class InventoryControllerTest {
 
 	@Test
     public void testHandleRequestView() throws Exception{

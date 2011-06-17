@@ -4,8 +4,10 @@ import java.util.List;
 import org.springframework.test.AbstractTransactionalDataSourceSpringContextTests;
 import org.jboss.spring.tutorial.domain.Product;
 import org.jboss.spring.tutorial.repo.ProductDao;
+import org.junit.Ignore;
 
-public class JdbcProductDaoTests extends AbstractTransactionalDataSourceSpringContextTests {
+@Ignore
+public class JdbcProductDaoTest extends AbstractTransactionalDataSourceSpringContextTests {
 
     private ProductDao productDao;
 
