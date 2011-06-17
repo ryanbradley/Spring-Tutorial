@@ -1,8 +1,9 @@
-package org.jboss.spring.tutorial.repo;
+package org.jboss.spring.tutorial.test;
 
 import java.util.List;
 import org.springframework.test.AbstractTransactionalDataSourceSpringContextTests;
 import org.jboss.spring.tutorial.domain.Product;
+import org.jboss.spring.tutorial.repo.ProductDao;
 
 public class JdbcProductDaoTests extends AbstractTransactionalDataSourceSpringContextTests {
 

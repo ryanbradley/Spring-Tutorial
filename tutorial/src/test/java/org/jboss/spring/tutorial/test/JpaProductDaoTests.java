@@ -5,9 +5,19 @@ import java.util.List;
 import org.jboss.spring.tutorial.domain.Product;
 import org.jboss.spring.tutorial.repo.ProductDao;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:test-context.xml")
+@TransactionConfiguration(defaultRollback=true)
 public class JpaProductDaoTests {
 	
+	@Autowired
 	private ProductDao productDao;
 	
 	public void setProductDao(ProductDao productDao) {
@@ -18,12 +28,14 @@ public class JpaProductDaoTests {
 		return new String[] {"classpath:test-context.xml"};
 	}
 
+	@Transactional
 	@Test
 	public void testGetProductList() {
         List<Product> products = productDao.getProductList();
         assert(products.size() == 3);       
     }
 
+	@Transactional
 	@Test
     public void testSaveProduct() {
         List<Product> products = productDao.getProductList();

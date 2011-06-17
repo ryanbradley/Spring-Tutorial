@@ -11,7 +11,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.2</version>
+      <version>4.7</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -132,6 +132,7 @@
     	<groupId>hsqldb</groupId>
     	<artifactId>hsqldb</artifactId>
     	<version>1.8.0.10</version>
+    	<scope>test</scope>
     </dependency>
     <dependency>
     	<groupId>org.slf4j</groupId>
@@ -139,8 +140,23 @@
     	<version>1.4.2</version>
     	<scope>test</scope>
     </dependency>    
+    <dependency>
+    	<groupId>cglib</groupId>
+    	<artifactId>cglib-nodep</artifactId>
+    	<version>2.2</version>
+    	<scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <finalName>tutorial</finalName>
+    <plugins>
+    	<plugin>
+    		<artifactId>maven-compiler-plugin</artifactId>
+    		<configuration>
+    			<source>1.6</source>
+    			<target>1.6</target>
+    		</configuration>
+    	</plugin>
+    </plugins>
   </build>
 </project>

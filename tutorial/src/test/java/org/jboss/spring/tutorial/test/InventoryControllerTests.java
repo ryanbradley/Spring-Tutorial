@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 import java.util.Map;
 
-@ContextConfiguration(locations = {"test-context.xml"})
+@ContextConfiguration(locations = {"classpath:test-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class InventoryControllerTests {
 
